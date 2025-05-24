@@ -1,0 +1,57 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    <h2 class="display-4">Let's translate text</h2>
+
+    <p class="gap-1">
+        <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Sample texts
+        </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <h4>About AWS Lambda (in French)</h4>
+            <p>
+                AWS Lambda est un service de calcul sans serveur qui exécute votre code en réponse à des événements et gère automatiquement les ressources de calcul sous-jacentes pour vous. Ces événements peuvent inclure des changements d'état ou une mise à jour, comme un utilisateur plaçant un élément dans un panier sur un site web de e-commerce. Vous pouvez utiliser AWS Lambda pour étendre les autres services AWS avec une logique personnalisée ou créer vos propres services backend qui fonctionnent en bénéficiant de la mise à l’échelle, des performances et de la sécurité AWS. AWS Lambda exécute automatiquement un code en réponse à plusieurs événements, tels que les requêtes HTTP via Amazon API Gateway, les modifications d'objets dans des compartiments Amazon Simple Storage Service (Amazon S3), les mises à jour de tables dans Amazon DynamoDB ou les transitions d'états dans AWS Step Functions.
+            </p>
+            <h4>About Amazon EC2 (in Portuguese)</h4>
+            <p>
+                O Amazon Elastic Compute Cloud (Amazon EC2) oferece a plataforma de computação mais ampla e profunda, com mais de 500 instâncias e opções do processador, armazenamento, redes, sistema operacional e modelo de compra mais recentes para ajudar você a atender melhor às necessidades da sua workload. Somos o primeiro grande provedor de nuvem a oferecer suporte para processadores Intel, AMD e Arm, a única nuvem com instâncias Mac do EC2 sob demanda e a única nuvem com redes Ethernet de 400 Gbps. Oferecemos a melhor performance de preço para treinamento de machine learning, bem como o menor custo por instâncias de inferência na nuvem. Mais workloads SAP, computação de alta performance (HPC), ML e Windows são executadas na AWS do que qualquer outra nuvem.
+            </p>
+
+        </div>
+    </div>
+
+
+    
+    
+    <form method="post">
+        <div class="form-group pt-3">
+            <label for="Text">Text:</label>
+            <textarea class="form-control" id="Text" name="Text" rows="5">@Model.Text</textarea>
+        </div>
+        <div class="form-group pt-3">
+            @*<input type="submit" class="btn btn-primary" asp-page-handler="Entities" value="Detect entities" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="PII" value="Detect PII" />*@
+            <input type="submit" class="btn btn-primary" asp-page-handler="Translate" value="Translate text" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="ClaudeTranslate" value="Claude Translate" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="LlamaTranslate" value="Llama Translate" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="ConverseTranslate" value="Converse Translate" />
+            <input type="submit" class="btn btn-primary" asp-page-handler="SKTranslate" value="SK Translate" />
+        </div>
+    </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col pt-3">
+                @Html.Raw(Model.Result)
+            </div>
+        </div>
+    </div>
+
+</div>
